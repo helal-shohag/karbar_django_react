@@ -20,7 +20,7 @@ useEffect(() => {
 return (
   <div>
     <h2 className='py-4'> {product.name}</h2>
-
+     
   </div>
   )
 }

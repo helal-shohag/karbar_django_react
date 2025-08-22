@@ -5,17 +5,18 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import ProductList from './components/ProductList';
 import ProductPage from './pages/ProductPage';
+import Category from './components/Category';
 
 function App() {
   return (
     <div className='container-fluid'>
       <Header/>
-      <BrowserRouter>
+  <BrowserRouter>
   <Routes>
    <Route path='/' element={<Home/>}/>
-  <Route path='/product' element={<ProductList/>}/>
-   <Route path='/products/:id' element={<ProductPage/>}/>
-  
+  <Route path='/products' element={<ProductList/>}/>
+  <Route path='/products/:id' element={<ProductPage/>}/>
+  <Route path='/category' element={<Category/>}/>
   </Routes>
   </BrowserRouter>
   <Footer/>
