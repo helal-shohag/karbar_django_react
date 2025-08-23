@@ -1,34 +1,23 @@
 import React from 'react'
-import { Card,Button } from 'react-bootstrap'
+import { Card,Button,Col} from 'react-bootstrap'
 import Rating from './Rating'
 import { Link } from 'react-router-dom'
 
 const ProductList = ({product}) => {
   return (
-    <Card className='my-3 p-3 rounded-xl shadow-lg h-100'>
-     <Link to={`/products/${product.id}`} className='text-center'>
-     <Card.Img src={product.image} alt={product.image} sizes={20}/>
-     <Card.Body>
-        <Card.Title py>
-            {product.name}<br/>
-        </Card.Title>
-        <Card.Text>
-           <Rating value={product.rating} review={product.review}/>
-            
-        </Card.Text>
-        <Card.Text>
-            {product.category}
-            
-        </Card.Text>
-        <Card.Text>
-            {product.description}
-            
-        </Card.Text>
-     </Card.Body>
-     </Link>
-    <Button className=''>Add To Cart</Button>
-     
-    </Card>
+    <Col key={product.id}>
+            <Card className='my-3 p-3 rounded-2xl shadow-lg'>
+                <Card.Img src={product.image} alt={product.name} className='h-100 w-300 object-fit'/>
+                <Card.Body>
+                    <Card.Title>{product.name}</Card.Title>
+                    <Card.Text>
+                        {product.description}
+                    </Card.Text>
+                    <Link to={`/products/${product._id}`}><Button variant='success' className='w-100 mb-4'>Add To Cart</Button></Link>
+                    <Link to={`/products/${product._id}`}><Button variant='success' className='w-100'>View Product</Button></Link>
+                </Card.Body>
+            </Card>    
+           </Col>         
   )
 }
 

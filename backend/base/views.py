@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from  .serializers import CategorySerializer, ProductSerializer, OrderSerializer,reviewSerializers
-from .models import Category, Product, Order, Review
+from .models import Category, Product
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
@@ -34,4 +34,10 @@ def Products_id(request, pk):
 def Categories(request):
     categories = Category.objects.all()
     serializers = CategorySerializer(categories, many=True)
+    return Response(serializers.data)
+
+@api_view(['GET'])
+def Categories_id(request, pk):
+    category = Category.objects.get(id=pk)
+    serializers = CategorySerializer(category, many=False)
     return Response(serializers.data)

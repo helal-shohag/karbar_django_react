@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Row,Card, Button, Col } from 'react-bootstrap'
 import axios from 'axios'
 
@@ -7,7 +8,7 @@ const Category = () => {
 
      useEffect(() =>{
        async function fetchCategory(){
-        const {data} = await axios.get('/api/categories')
+        const {data} = await axios.get('/api/categories/')
         setCategories(data)
        }
        fetchCategory()
@@ -26,7 +27,7 @@ const Category = () => {
                     <Card.Text>
                         {category.description}
                     </Card.Text>
-                    <Button variant='success' className='w-100'>View Products</Button>
+                    <Link to={`/categories/${category.id}`}><Button variant='success' className='w-100'>View Products</Button></Link>
                 </Card.Body>
             </Card>    
            </Col>         
