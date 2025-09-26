@@ -25,6 +25,7 @@ function Home() {
       <Category />
         <h2 className='text-center mt-4 mb-4 '>Latest Products</h2>
         <Row>
+          
            {products.map(product=>(
             <Col key={product.id} sm={12} lg={4} md={6} xl={3}>
             <ProductList product={product}/>
