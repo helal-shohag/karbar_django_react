@@ -36,8 +36,8 @@ const Header = () => {
           <div className='d-flex gap-3'> 
             <Nav.Link href='' className='my-4'><FaCartShopping size={20}/></Nav.Link>
         <Nav.Link href='' className='my-4'><FaHeart size={20}/></Nav.Link>
-<Button><Nav.Link href="#action1">SignUp</Nav.Link></Button>
-<Button><Nav.Link href="#action1">Login</Nav.Link></Button>
+<Button><Nav.Link href="/register">SignUp</Nav.Link></Button>
+<Button><Nav.Link href="/login">Login</Nav.Link></Button>
         
           </div>
            

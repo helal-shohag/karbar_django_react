@@ -2,12 +2,13 @@ from django.shortcuts import render
 from  .serializers import CategorySerializer, ProductSerializer, OrderSerializer,reviewSerializers,UserSerializer,UserSerializerToken
 from .models import Category, Product
 from rest_framework.response import Response
-
+from django.contrib.auth.models import User
 from rest_framework.decorators import api_view,permission_classes
 from rest_framework.permissions import IsAuthenticated,IsAdminUser
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-
+from django.contrib.auth.hashers import make_password
+from rest_framework import status
 # Create your views here.
 
 
@@ -39,13 +40,35 @@ class tokenSerializer(TokenObtainPairSerializer):
 class myTokenView(TokenObtainPairView):
     serializer_class = tokenSerializer
 
+@api_view(['POST'])
+def RegisterUser(request):
+    data = request.data
+    try:
+        user = User.objects.create_user(
+        first_name = data['name'],
+        username = data['email'],
+        email = data['email'],
+        password = make_password(data['password'])
+    ) 
+        serializer = UserSerializerToken(user,many=False)
 
+        return Response(serializer.data)
+    except:
+          message = {'detail':'User with this email already exists'}
+          return Response(message,status=status.HTTP_400_BAD_REQUEST)
+    
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def users_profile(request):
     user = request.user
-    serilaizers = UserSerializer(user, many=False)
-    return Response(serilaizers.data)
+    serilaizer = UserSerializer(user,many =True)
+    return Response(serilaizer.data)
+
+@api_view(['GET'])
+def users(request):
+    user = User.objects.all()
+    serilaizer = UserSerializer(user, many=True)
+    return Response(serilaizer.data)
 
 @api_view(['GET'])
 

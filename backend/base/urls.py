@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import getRoutes, Products_id,Products,Categories,Categories_id,myTokenView,users_profile
+from .views import getRoutes, Products_id,Products,Categories,Categories_id,myTokenView,users_profile,users,RegisterUser
 urlpatterns = [
     path('',getRoutes,name='routes'),
     path('products/',Products,name='products'),
@@ -8,5 +8,6 @@ urlpatterns = [
     path('categories/<int:pk>/',Categories_id,name='categories'),
     path('users/login/',myTokenView.as_view(),name = 'login'),
     path('users/profile/',users_profile,name='users-profile'),
-    
+    path('users/',users,name='users'),
+    path('users/register/',RegisterUser,name='register'),
 ]
