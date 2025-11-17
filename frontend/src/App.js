@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import ProductPage from './pages/ProductPage';
 import CategoryPage from './pages/CategoryPage';
+import CartPage from './pages/CartPage';
 
 
 function App() {
@@ -15,7 +16,10 @@ function App() {
   <Routes>
    <Route path='/' element={<Home/>}/>
   <Route path='/products/:id' element={<ProductPage/>}/>
+  {/* <Route path='/products' element={<ProductPage/>}/> */}
+  <Route path='/categories/' element={<ProductPage/>}/>
   <Route path='/categories/:id' element={<CategoryPage/>}/>
+  <Route path='/cart/:id?' element={<CartPage/>}/>
   </Routes>
   </BrowserRouter>
   <Footer/>
